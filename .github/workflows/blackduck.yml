@@ -1,4 +1,4 @@
-name: CI_BLACKDUCK
+name: CI_BLACKDUCK_ARM
 on:
   push:
     branches: [ main, master, develop, stage, release ]
