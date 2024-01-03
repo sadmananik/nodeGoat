@@ -32,7 +32,7 @@ jobs:
           # include_diagnostics: true
       - name: Black Duck PR Scan
         if: ${{ github.event_name == 'pull_request' }}
-        uses: synopsys-sig/synopsys-action@SIGINT-1414
+        uses: synopsys-sig/synopsys-action@SIGINT-1414-MODIFIED
         ### Use below configuration to set specific detect environment variables
         env:
           DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
