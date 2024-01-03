@@ -24,6 +24,7 @@ jobs:
           blackduck_scan_failure_severities: 'BLOCKER,CRITICAL'
           ### Uncomment below configuration to enable automatic fix pull request creation if vulnerabilities are reported
           blackduck_fixpr_enabled: true
+          bridge_download_version: '2.0.0'
           # blackduck_fixpr_maxCount: 5
           # blackduck_fixpr_filter_severities: 'CRITICAL,HIGH'
           # blackduck_fixpr_useUpgradeGuidance: 'SHORT_TERM,LONG_TERM'
