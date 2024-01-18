@@ -17,6 +17,10 @@ jobs:
         env:
           DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
         with:
+          blackduck_reports_sarif_create: true
+          # blackduck_reports_sarif_file_path:
+          # blackduck_reports_sarif_severities:
+          # blackduck_reports_sarif_groupSCAIssues:
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
           blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck_scan_full: true
