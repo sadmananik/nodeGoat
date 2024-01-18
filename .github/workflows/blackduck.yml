@@ -1,4 +1,4 @@
-name: CI_BLACKDUCK_ARM
+name: CI_BLACKDUCK_SARIF
 on:
   push:
     branches: [ main, master, develop, stage, release ]
@@ -6,17 +6,21 @@ on:
     branches: [ main, master, develop, stage, release ]
 jobs:
   build:
-    runs-on: [ self-hosted ]
+    runs-on: [ ubuntu-latest ]
     steps:
       - name: Checkout Source
         uses: actions/checkout@v3
       - name: Black Duck Full Scan
         if: ${{ github.event_name != 'pull_request' }}
-        uses: synopsys-sig/synopsys-action@SIGINT-1414-MODIFIED
+        uses: synopsys-sig/synopsys-action@SIGINT-1189
         ### Use below configuration to set specific detect environment variables
         env:
           DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
         with:
+          blackduck_reports_sarif_create: true
+          # blackduck_reports_sarif_file_path:
+          # blackduck_reports_sarif_severities:
+          # blackduck_reports_sarif_groupSCAIssues:
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
           blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
           blackduck_scan_full: true
@@ -24,25 +28,25 @@ jobs:
           blackduck_scan_failure_severities: 'BLOCKER,CRITICAL'
           ### Uncomment below configuration to enable automatic fix pull request creation if vulnerabilities are reported
           blackduck_fixpr_enabled: true
-          bridge_download_version: '2.0.0'
+          bridge_download_version: '2.1.0'
           # blackduck_fixpr_maxCount: 5
           # blackduck_fixpr_filter_severities: 'CRITICAL,HIGH'
           # blackduck_fixpr_useUpgradeGuidance: 'SHORT_TERM,LONG_TERM'
           github_token: ${{ secrets.GITHUB_TOKEN }} # Mandatory when blackduck_fixpr_enabled is set to 'true'
           ### Uncomment below configuration if Synopsys Bridge diagnostic files needs to be uploaded
           # include_diagnostics: true
-      - name: Black Duck PR Scan
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: synopsys-sig/synopsys-action@SIGINT-1414-MODIFIED
-        ### Use below configuration to set specific detect environment variables
-        env:
-          DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
-        with:
-          blackduck_url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
-          blackduck_scan_full: false
-          ### Below configuration is used to enable automatic pull request comment based on Black Duck scan result
-          blackduck_automation_prcomment: true
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Mandatory when blackduck_automation_prcomment is set to 'true'
-          ### Uncomment below configuration if Synopsys Bridge diagnostic files needs to be uploaded
-          # include_diagnostics: true          
+      # - name: Black Duck PR Scan
+      #   if: ${{ github.event_name == 'pull_request' }}
+      #   uses: synopsys-sig/synopsys-action@SIGINT-1414-MODIFIED
+      #   ### Use below configuration to set specific detect environment variables
+      #   env:
+      #     DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
+      #   with:
+      #     blackduck_url: ${{ secrets.BLACKDUCK_URL }}
+      #     blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
+      #     blackduck_scan_full: false
+      #     ### Below configuration is used to enable automatic pull request comment based on Black Duck scan result
+      #     blackduck_automation_prcomment: true
+      #     github_token: ${{ secrets.GITHUB_TOKEN }} # Mandatory when blackduck_automation_prcomment is set to 'true'
+      #     ### Uncomment below configuration if Synopsys Bridge diagnostic files needs to be uploaded
+      #     # include_diagnostics: true          
