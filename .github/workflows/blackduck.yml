@@ -17,7 +17,7 @@ jobs:
         env:
           DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
         with:
-          synopsys_bridge_download_url: https://artifactory.internal.synopsys.com/artifactory/clops-local/clops.sig.synopsys.com/synopsys-bridge/latest/synopsys-bridge-macos_arm.zip
+          synopsys_bridge_download_url: https://artifactory.internal.synopsys.com/artifactory/clops-local/clops.sig.synopsys.com/synopsys-bridge/latest/synopsys-bridge-linux64.zip
           blackduck_reports_sarif_create: true                    
           include_diagnostics: true
 
