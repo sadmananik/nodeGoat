@@ -37,18 +37,18 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }} # Mandatory when blackduck_fixpr_enabled is set to 'true'
           ### Uncomment below configuration if Synopsys Bridge diagnostic files needs to be uploaded
           # include_diagnostics: true
-      # - name: Black Duck PR Scan
-      #   if: ${{ github.event_name == 'pull_request' }}
-      #   uses: synopsys-sig/synopsys-action@SIGINT-1414-MODIFIED
-      #   ### Use below configuration to set specific detect environment variables
-      #   env:
-      #     DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
-      #   with:
-      #     blackduck_url: ${{ secrets.BLACKDUCK_URL }}
-      #     blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
-      #     blackduck_scan_full: false
-      #     ### Below configuration is used to enable automatic pull request comment based on Black Duck scan result
-      #     blackduck_automation_prcomment: true
-      #     github_token: ${{ secrets.GITHUB_TOKEN }} # Mandatory when blackduck_automation_prcomment is set to 'true'
-      #     ### Uncomment below configuration if Synopsys Bridge diagnostic files needs to be uploaded
-      #     # include_diagnostics: true          
+      - name: Black Duck PR Scan
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: synopsys-sig/synopsys-action@main
+        ### Use below configuration to set specific detect environment variables
+        env:
+          DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
+        with:
+          blackduck_url: ${{ secrets.BLACKDUCK_URL }}
+          blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
+          blackduck_scan_full: false
+          ### Below configuration is used to enable automatic pull request comment based on Black Duck scan result
+          blackduck_automation_prcomment: true
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Mandatory when blackduck_automation_prcomment is set to 'true'
+          ### Uncomment below configuration if Synopsys Bridge diagnostic files needs to be uploaded
+          # include_diagnostics: true          
