@@ -34,3 +34,5 @@ jobs:
           polaris_reports_sarif_severities: "critical,high,medium,low"
           polaris_reports_sarif_groupSCAIssues: true
           polaris_reports_sarif_issue_types: 'SCA'
+        env:
+          NODE_OPTIONS: "--openssl-legacy-provider"
