@@ -22,7 +22,7 @@ jobs:
           polaris_assessment_types: "SCA,SAST"
           
           ### SCANNING: Optional fields
-          # polaris_application_name: ${{ github.event.organization.name }}
+          polaris_application_name: "test_jenkins"
           polaris_project_name: "springboot-pipeline-test"
           
           ### PULL REQUEST COMMENTS: Uncomment below to enable
