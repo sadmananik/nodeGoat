@@ -10,18 +10,8 @@ jobs:
   build:
     runs-on: [ self-hosted ]
     steps:
-      - name: Setup NODE
-        uses: actions/setup-node@v2
-        with:
-          node-version: "17"
-      - run: node --version
-        env:
-          NODE_OPTIONS: "--openssl-legacy-provider"
-      
       - name: Checkout Source
-        uses: actions/checkout@v3
-        env:
-          NODE_OPTIONS: "--openssl-legacy-provider"
+        uses: actions/checkout@v2
 
       - name: Polaris Scan
         uses: synopsys-sig/synopsys-action@SIGINT-1468
