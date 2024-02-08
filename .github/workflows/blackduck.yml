@@ -1,4 +1,4 @@
-name: CI_BLACKDUCK_SARIF
+name: CI_BLACKDUCK
 on:
   push:
     branches: [ main, master, develop, stage, release ]
