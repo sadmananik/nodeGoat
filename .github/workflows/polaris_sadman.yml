@@ -15,7 +15,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "17"
-      - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
+      - run: node --version
+        env:
+          NODE_OPTIONS: "--openssl-legacy-provider"
         
       - name: Checkout Source
         uses: actions/checkout@v3
