@@ -11,10 +11,11 @@ jobs:
     runs-on: [ self-hosted ]
     steps:
 
-      - name: Setup Node.js
+      - name: Setup NODE
         uses: actions/setup-node@v2
         with:
-          node-version: '21' # Specify the desired Node.js version here
+          node-version: "17"
+      - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
         
       - name: Checkout Source
         uses: actions/checkout@v3
