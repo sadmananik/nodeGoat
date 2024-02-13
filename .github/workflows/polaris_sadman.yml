@@ -32,6 +32,6 @@ jobs:
           ### SARIF report parameters
           polaris_reports_sarif_create: true
           # polaris_reports_sarif_file_path: "/home/sanik/actions-runner/_work/nodeGoat/nodeGoat/.bridge/report.json"
-          # polaris_reports_sarif_severities: "critical,high,medium,low"
+          polaris_reports_sarif_severities: "critical,high,medium,low"
           polaris_reports_sarif_groupSCAIssues: true
-          # polaris_reports_sarif_issue_types: 'SCA'
+          polaris_reports_sarif_issue_types: 'SCA, SAST'
