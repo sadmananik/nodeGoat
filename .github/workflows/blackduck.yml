@@ -1,4 +1,4 @@
-name: CI_BLACKDUCK_SARIF
+name: CI_BLACKDUCK
 on:
   push:
     branches: [ main, master, develop, stage, release ]
@@ -21,9 +21,6 @@ jobs:
           blackduck_reports_sarif_create: true                    
           include_diagnostics: true
 
-          # blackduck_reports_sarif_file_path:
-          # blackduck_reports_sarif_severities:
-          # blackduck_reports_sarif_groupSCAIssues:
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
           blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
           # blackduck_scan_full: true

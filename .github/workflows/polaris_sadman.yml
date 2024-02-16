@@ -1,0 +1,37 @@
+name: CI-Polaris-SADMAN 
+on:
+  push:
+    branches: [ main, master, develop, stage, release ]
+  pull_request:
+    branches: [ main, master, develop, stage, release ]
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: [ self-hosted ]
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+
+      - name: Polaris Scan
+        uses: synopsys-sig/synopsys-action@SIGINT-1559
+        with:
+          ### SCANNING: Required fields
+          polaris_server_url: ${{ secrets.POLARIS_SERVER_URL }}
+          polaris_access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
+          polaris_assessment_types: "SCA"
+          
+          ### SCANNING: Optional fields
+          polaris_application_name: "test_jenkins"
+          polaris_project_name: "springboot-pipeline-test"
+          
+          ### PULL REQUEST COMMENTS: Uncomment below to enable
+          # polaris_prComment_enabled: true 
+          # github_token: ${{ secrets.GITHUB_TOKEN }} # Required when PR comments is enabled
+
+          ### SARIF report parameters
+          #polaris_reports_sarif_create: true
+          # polaris_reports_sarif_file_path: "/home/sanik/actions-runner/_work/nodeGoat/nodeGoat/.bridge/report.json"
+          #polaris_reports_sarif_severities: "critical,high,medium,low"
+          #polaris_reports_sarif_groupSCAIssues: true
+          #polaris_reports_sarif_issue_types: 'SCA, SAST'
