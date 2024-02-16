@@ -10,8 +10,13 @@ jobs:
   build:
     runs-on: [ self-hosted ]
     steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20' 
+        
       - name: Checkout Source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Polaris Scan
         uses: synopsys-sig/synopsys-action@SIGINT-1559
