@@ -21,7 +21,7 @@ jobs:
           blackduck_reports_sarif_create: true                    
           # blackduck_reports_sarif_file_path:
           blackduck_reports_sarif_severities: "critical,high,medium,low"
-          blackduck_reports_sarif_groupSCAIssues: 'SCA, SAST'
+          blackduck_reports_sarif_groupSCAIssues: 'SCA'
           polaris_upload_sarif_report: true
           blackduck_url: ${{ secrets.BLACKDUCK_URL }}
           blackduck_apiToken: ${{ secrets.BLACKDUCK_API_TOKEN }}
